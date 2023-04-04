@@ -1,11 +1,11 @@
 package com.example.JobManagementSite.model;
 
-import java.security.Timestamp;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -16,20 +16,15 @@ public class Application
 	@Id @GeneratedValue
 	private int applicationId;
 	
-	@Column(nullable=false)
-	private int applicationJobId;
+	@ManyToOne
+	@JoinColumn(name="job_Id")
+	private Job job;
 	
-	@Column(nullable=false)
-	private String applicationStat;
+	@ManyToOne
+	@JoinColumn(name="job_Seeker_Id")
+	private JobSeeker jobSeeker;
 	
-	@Column(nullable=false)
-	private int applicantId;
-	
-	@Column(nullable=false)
-	private Timestamp applicationCreated;
-	
-	@Column(nullable=false)
-	private Timestamp applicationUpdated;
+	private String applicationStatus;
 
 	public int getApplicationId() {
 		return applicationId;
@@ -39,44 +34,30 @@ public class Application
 		this.applicationId = applicationId;
 	}
 
-	public int getApplicationJobId() {
-		return applicationJobId;
+	public Job getJob() {
+		return job;
 	}
 
-	public void setApplicationJobId(int applicationJobId) {
-		this.applicationJobId = applicationJobId;
+	public void setJob(Job job) {
+		this.job = job;
 	}
 
-	public String getApplicationStat() {
-		return applicationStat;
+	public JobSeeker getJobSeeker() {
+		return jobSeeker;
 	}
 
-	public void setApplicationStat(String applicationStat) {
-		this.applicationStat = applicationStat;
+	public void setJobSeeker(JobSeeker jobSeeker) {
+		this.jobSeeker = jobSeeker;
 	}
 
-	public int getApplicantId() {
-		return applicantId;
+	public String getApplicationStatus() {
+		return applicationStatus;
 	}
 
-	public void setApplicantId(int applicantId) {
-		this.applicantId = applicantId;
+	public void setApplicationStatus(String applicationStatus) {
+		this.applicationStatus = applicationStatus;
 	}
-
-	public Timestamp getApplicationCreated() {
-		return applicationCreated;
-	}
-
-	public void setApplicationCreated(Timestamp applicationCreated) {
-		this.applicationCreated = applicationCreated;
-	}
-
-	public Timestamp getApplicationUpdated() {
-		return applicationUpdated;
-	}
-
-	public void setApplicationUpdated(Timestamp applicationUpdated) {
-		this.applicationUpdated = applicationUpdated;
-	}
+	
+	
 	
 }

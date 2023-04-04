@@ -11,15 +11,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.JobManagementSite.dao.AppliRepo;
 import com.example.JobManagementSite.dao.JobRepo;
+import com.example.JobManagementSite.model.Application;
 import com.example.JobManagementSite.model.Job;
 
+
+//JOB MANAGEMENT
 @RestController
 public class JobController {
 
 	
 	@Autowired
 	JobRepo jrepo;
+	@Autowired 
+	AppliRepo arepo;
 	
 	
 	@PostMapping("/job")
@@ -45,7 +51,7 @@ public class JobController {
 	public Job updateById(@PathVariable int id, @RequestBody Job job)
 	{
 		Job jb=jrepo.findById(id).orElse(new Job());
-		jb.setJobEmployerId(job.getJobEmployerId());
+		jb.setCompany(job.getCompany());
 		jb.setJobTitle(job.getJobTitle());
 		jb.setJobDesc(job.getJobDesc());
 		jb.setJobQuali(job.getJobQuali());
@@ -63,5 +69,29 @@ public class JobController {
 	{
 		jrepo.deleteById(id);
 		return "DELETED";
+	}
+	
+	//APPLICANT TRACKING
+	
+	
+	@GetMapping("jobs/{id}/applications")
+	public Application getByAppId(@PathVariable int id )
+	{
+		return arepo.findById(id).orElse(new Application());
+	}
+	
+	@GetMapping("jobs/applications/{applicationId}")
+	public Application getApplication( @PathVariable int  appId)
+	{
+		return arepo.findById(appId).orElse(new Application());
+	}
+	
+	@PutMapping("jobs/applications/{id}/status")
+	public Application updateStatus(@RequestBody Application app, @PathVariable int id)
+	{
+		Application ap=arepo.findById(id).orElse(new Application());
+		ap.setApplicationStatus(app.getApplicationStatus());
+		arepo.save(app);
+		return app;
 	}
 }
