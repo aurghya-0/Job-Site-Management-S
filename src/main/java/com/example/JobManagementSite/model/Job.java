@@ -1,6 +1,6 @@
 package com.example.JobManagementSite.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,11 +33,9 @@ public class Job
 	
 	@Column(nullable=false)
 	private String jobSalary;
-	
-	@Column(nullable=false)
+
 	private Timestamp jobCreated;
-	
-	@Column(nullable=false)
+
 	private Timestamp jobUpdated;
 	
 	@ManyToOne
