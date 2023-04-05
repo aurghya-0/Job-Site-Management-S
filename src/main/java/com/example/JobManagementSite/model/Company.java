@@ -11,7 +11,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="Company")
 public class Company {
-
 	@Id
 	@GeneratedValue
 	private int companyId;
@@ -80,6 +79,4 @@ public class Company {
 		this.companyEstablishmentDate = companyEstablishmentDate;
 	}
 
-	
-	
 }
