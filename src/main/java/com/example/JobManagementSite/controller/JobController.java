@@ -60,8 +60,8 @@ public class JobController {
 		jb.setJobCreated(job.getJobCreated());
 		jb.setJobUpdated(job.getJobUpdated());
 		
-		jrepo.save(job);
-		return job;
+		jrepo.save(jb);
+		return jb;
 	}
 	
 	@DeleteMapping("/jobs/{id}")
@@ -74,14 +74,25 @@ public class JobController {
 	//APPLICANT TRACKING
 	
 	
+	
+	@PostMapping("jobs/{id}/applications")
+	public Application createApplication(@RequestBody Application app, @PathVariable int id)
+	{
+		Job jb=jrepo.findById(id).orElse(new Job());
+		Application newApplication = app;
+		newApplication.setJob(jb);
+		return arepo.save(newApplication);
+	}
+	
+	
 	@GetMapping("jobs/{id}/applications")
 	public Application getByAppId(@PathVariable int id )
 	{
 		return arepo.findById(id).orElse(new Application());
 	}
 	
-	@GetMapping("jobs/applications/{applicationId}")
-	public Application getApplication( @PathVariable int  appId)
+	@GetMapping("jobs/applications/{appId}")
+	public Application getApplication( @PathVariable int appId)
 	{
 		return arepo.findById(appId).orElse(new Application());
 	}

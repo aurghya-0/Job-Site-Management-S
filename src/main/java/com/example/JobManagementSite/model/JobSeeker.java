@@ -1,6 +1,6 @@
 package com.example.JobManagementSite.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,13 +37,81 @@ public class JobSeeker {
 	@Column(nullable=false)
 	private String majorSkill;
 	
-	@Column(nullable=false)
 	private Timestamp createdAt;
 	
-	@Column(nullable=false)
 	private Timestamp updatedAt;
-	
-	
+
+	public int getJobSeekerId() {
+		return jobSeekerId;
+	}
+
+	public void setJobSeekerId(int jobSeekerId) {
+		this.jobSeekerId = jobSeekerId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education;
+	}
+
+	public String getMajorSkill() {
+		return majorSkill;
+	}
+
+	public void setMajorSkill(String majorSkill) {
+		this.majorSkill = majorSkill;
+	}
+
+	public Timestamp getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Timestamp getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Timestamp updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 	
 	
 	
